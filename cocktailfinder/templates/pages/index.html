@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<h1>Search Cocktails!</h1>
+<form>
+    <div class="row justify-content-center">
+        <div class="col-5">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Try searching 'margarita' or 'vodka'! " >
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="option" id="drink-name" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+                Drink Name
+            </label>
+        </div>
+        <div class="form-check col-2">
+            <input class="form-check-input" type="radio" name="option" id="drink-ingredient">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Ingredient
+            </label>
+
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

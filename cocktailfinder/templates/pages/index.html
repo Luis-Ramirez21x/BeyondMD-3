@@ -11,54 +11,28 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="form-check col-2">
-            <input class="form-check-input" type="radio" name="searchOption" value="s" checked>
-            <label class="form-check-label">
-                Drink Name
-            </label>
-        </div>
-        <div class="form-check col-2">
-            <input class="form-check-input" type="radio" name="searchOption" value="i">
-            <label class="form-check-label">
-                Ingredient
-            </label>
-            <input class="submit" type="submit" value="OK">
+        <div class="form-check col-3">
+            <input class="submit" type="submit" value="OK" name="search">
         </div>
         
 
     </div>
     {% if  drinks%}
         {% for drink in drinks%}
-            <div class="card mb-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src={{drink.strDrinkThumb}} class="img-fluid rounded-start" alt="...">
-                        <div style="display: flex; flex-wrap:wrap;"}>
-                            <ul class="list-group list-group-flush" style="font-size: 12px;">
-                                {% for portion in drink.ingredientPortions%}
-                                <li class="list-group-item">{{portion}}</li>
-                                {% endfor %}
-                            </ul>
-                            <ul class="list-group list-group-flush" style="font-size: 12px;">
-                                {% for ingredient in drink.ingredients%}
-                                <li class="list-group-item">{{ingredient}}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                        <h5 class="card-title">{{drink.strDrink}}</h5>
-                        <p class="card-text"><small class="text-muted">{{drink.strGlass}}</small></p>
-                        <p class="card-text">{{drink.strInstructions}}</p>
-                        
-                        </div>
-                    </div>
+        <a href="drinks/{{drink.idDrink}}">
+            <div class="card" style="width: 18rem;">
+                <img src={{drink.strDrinkThumb}} class="card-img-top" alt={{drink.strDrink}}>
+                <div class="card-body">
+                    <h5 class="card-title">{{drink.strDrink}}</h5>
                 </div>
             </div>
+        </a>
         {% endfor %}
     {% endif %}
+
+    {% if test %}
+    <p>{{test}}</p>
+    {% endif%}
 </form>
 
 {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<h1>Drink</h1>
+{% if  drink%}
+
+    <div class="card mb-3" style="max-width: 540px;" id={{drink.idDrink}}>
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src={{drink.strDrinkThumb}} class="img-fluid rounded-start" alt="...">
+                <div style="display: flex; flex-wrap:wrap;"}>
+                    <ul class="list-group list-group-flush" style="font-size: 12px;">
+                        {% for portion in drink.ingredientPortions%}
+                        <li class="list-group-item" style=" border:none">{{portion}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="list-group list-group-flush" style="font-size: 12px;">
+                        {% for ingredient in drink.ingredients%}
+                        <li class="list-group-item" style=" border:none">{{ingredient}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title">{{drink.strDrink}}</h5>
+                <p class="card-text"><small class="text-muted">{{drink.strGlass}}</small></p>
+                <p class="card-text">{{drink.strInstructions}}</p>
+                <form method=POST>
+                    {% csrf_token %}
+                    <input class="submit" type="submit" value="Save" name="save">
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+{% endblock %}

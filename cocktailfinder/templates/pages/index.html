@@ -3,28 +3,62 @@
 {% block content%}
 
 <h1>Search Cocktails!</h1>
-<form>
+<form method=POST > 
+    {% csrf_token %}
     <div class="row justify-content-center">
         <div class="col-5">
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Try searching 'margarita' or 'vodka'! " >
+            <input type="text" class="form-control" id="userInput" name="userInput" placeholder="Try searching 'margarita' or 'vodka'! " >
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="form-check col-2">
-            <input class="form-check-input" type="radio" name="option" id="drink-name" checked>
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="searchOption" value="s" checked>
+            <label class="form-check-label">
                 Drink Name
             </label>
         </div>
         <div class="form-check col-2">
-            <input class="form-check-input" type="radio" name="option" id="drink-ingredient">
-            <label class="form-check-label" for="flexRadioDefault2">
+            <input class="form-check-input" type="radio" name="searchOption" value="i">
+            <label class="form-check-label">
                 Ingredient
             </label>
-
+            <input class="submit" type="submit" value="OK">
         </div>
-    </div>
+        
 
+    </div>
+    {% if  drinks%}
+        {% for drink in drinks%}
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src={{drink.strDrinkThumb}} class="img-fluid rounded-start" alt="...">
+                        <div style="display: flex; flex-wrap:wrap;"}>
+                            <ul class="list-group list-group-flush" style="font-size: 12px;">
+                                {% for portion in drink.ingredientPortions%}
+                                <li class="list-group-item">{{portion}}</li>
+                                {% endfor %}
+                            </ul>
+                            <ul class="list-group list-group-flush" style="font-size: 12px;">
+                                {% for ingredient in drink.ingredients%}
+                                <li class="list-group-item">{{ingredient}}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                        <h5 class="card-title">{{drink.strDrink}}</h5>
+                        <p class="card-text"><small class="text-muted">{{drink.strGlass}}</small></p>
+                        <p class="card-text">{{drink.strInstructions}}</p>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 </form>
 
 {% endblock %}

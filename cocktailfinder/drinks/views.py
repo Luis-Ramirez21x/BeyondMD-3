@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from .models import Drink
 
@@ -23,7 +23,7 @@ def drink(request, drink_id):
         drinkToAdd = Drink(name=drink['strDrink'],drinkId=drink['idDrink'],imageUrl=drink['strDrinkThumb'], instructions=drink['strInstructions'] , note='')
         drinkToAdd.setIngredients(ingredients, ingredientPortions)
         drinkToAdd.save()
-        return render(request, 'drinks/drink.html', {'drink':drink})
+        return render(request, 'drinks/drink.html', {'drink':drink, 'saved': True})
     else:
         return render(request, 'drinks/drink.html', {'drink':drink})
         
@@ -33,8 +33,8 @@ def savedDrinks(request):
         return render(request, 'drinks/savedDrinks.html', {'savedDrinks': savedDrinks_list})
 
 def addNote(request, drink_id):
+
     drink = Drink.objects.get(drinkId=drink_id)
-    
 
     if request.method == "POST":
         userInput = request.POST['userInput']
@@ -44,3 +44,9 @@ def addNote(request, drink_id):
         return render(request, 'drinks/addNote.html',{'drink': drink})
     else:
         return render(request, 'drinks/addNote.html',{'drink': drink})
+
+def deleteDrink(request, drink_id):
+    drink = Drink.objects.get(drinkId=drink_id)
+    drink.delete()
+
+    return redirect(savedDrinks)

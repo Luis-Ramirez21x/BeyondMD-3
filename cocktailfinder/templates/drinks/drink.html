@@ -27,10 +27,14 @@
                 <h5 class="card-title">{{drink.strDrink}}</h5>
                 <p class="card-text"><small class="text-muted">{{drink.strGlass}}</small></p>
                 <p class="card-text">{{drink.strInstructions}}</p>
+                {% if saved %}
+                    <p>saved</p>
+                {% else%}
                 <form method=POST>
                     {% csrf_token %}
                     <input class="submit" type="submit" value="Save" name="save">
                 </form>
+                {% endif %}
                 </div>
             </div>
         </div>

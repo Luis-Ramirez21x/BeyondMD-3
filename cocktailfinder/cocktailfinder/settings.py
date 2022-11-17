@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_oxhw=z62nu!&vk5o+n^0t^43p0c^)9*#tw1^%gi8$bp62y4s!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,10 +79,11 @@ WSGI_APPLICATION = 'cocktailfinder.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cocktailfinderdb',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD' : 'Reactjs74123',
-        "HOST" : 'localhost'
+        'PASSWORD' : 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 

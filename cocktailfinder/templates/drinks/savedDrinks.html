@@ -2,28 +2,38 @@
 
 {% block content%}
 <h1>Saved Drinks</h1>
-{% if savedDrinks %}
+<div class="custom-col">
+  {% if savedDrinks %}
   {% for drink in savedDrinks %}
-    <div class="card" style="width: 18rem;">
+    <div class="card custom-card" style="max-width:300px ;margin:5px">
       <img src={{drink.imageUrl}} class="card-img-top" alt={{dirnk.name}}>
       <div class="card-body">
         <h5 class="card-title">{{drink.name}}</h5>
         <p class="card-text">{{drink.instructions}}</p>
+        <hr>
+        <h6>My Notes</h6>
+        {% if drink.note %}
+            <p>{{drink.note}}</p>
+        {% else%}
+            <p>No notes yet...</p>
+        {% endif %}
+        <hr>
       </div>
-      <div style="display: flex; flex-direction:row; justify-content:center">
+      
+      <div class="custom-col">
         <ul class="list-group list-group-flush">
           {% for portion in drink.getIngredientPortions %}
-          <li class="list-group-item">{{portion}}</li>
+          <li class="list-group-item" style=" border:none">{{portion}}</li>
           {% endfor %}
         </ul>
         <ul class="list-group list-group-flush">
           {% for item in drink.getIngredients %}
-          <li class="list-group-item">{{item}}</li>
+          <li class="list-group-item" style=" border:none">{{item}}</li>
           {% endfor %}
         </ul>  
       </div>
-          
-      <div class="card-body">
+      
+      <div class="card-body add-delete">
         <a href="add-note/{{drink.drinkId}}" class="card-link">Add note</a>
         <a href="delete-drink/{{drink.drinkId}}" class="card-link">Delete</a>
       </div>
@@ -31,5 +41,7 @@
   {% endfor %}
 {% else%}
     <h6>No saved drinks yet...</h6>
-{% endif%}  
+{% endif%} 
+</div>
+ 
 {% endblock %}

@@ -1,0 +1,66 @@
+/* home page*/
+.custom-nav{
+    flex-wrap: wrap !important;
+    justify-content: space-around !important;
+}
+
+a{
+    color:orange;
+    text-decoration: none;
+}
+
+h1, h5{
+    font-family: monospace;
+}
+
+.navbar-brand{
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    color: orange;
+}
+
+.srch-btn{
+    border-radius: 10px;
+    border: 1px solid orange;
+    background-color: darkorange;
+    color: white;
+    padding: 4px 20px 4px 20px;
+    font-family: monospace;
+    margin-top: 10px;
+}
+
+/* Searched cards */
+
+.custom-col{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* single drink */
+.ingredients ul{
+    width: 50%;
+}
+
+.custom-card{
+    border:1px solid darkgrey;
+    border-radius: 10px;
+    box-shadow: 7px 5px 7px 0px;
+    height: fit-content;
+}
+
+.single-card{
+    max-width: 540px; 
+    margin: auto;
+}
+
+li{
+    border: none;
+}
+
+.add-delete{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

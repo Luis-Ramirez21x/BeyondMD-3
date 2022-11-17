@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <div class="card mb-3" style="max-width: 540px;" id={{drink.idDrink}}>
+    <div class="card mb-3 custom-card single-card"  id={{drink.idDrink}}>
         <div class="row g-0">
             <div class="col-md-4">
                 <img src={{drink.imageUrl}} class="img-fluid rounded-start" alt={{drink.name}}>
@@ -36,7 +36,7 @@
                             <input type="text" class="form-control" id="userInput" name="userInput" placeholder="This drink..." >
                         </div>
                         <div class="form-check col-3">
-                            <input class="submit" type="submit" value="OK" name="Add Note">
+                            <input class="submit srch-btn" type="submit" value="OK" name="Add Note">
                         </div>
                     </div>
                 </form>

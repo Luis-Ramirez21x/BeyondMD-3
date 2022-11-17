@@ -11,28 +11,31 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="form-check col-3">
-            <input class="submit" type="submit" value="OK" name="search">
+        <div class="form-check col-3" style="padding-left: 0px;">
+            <input class="submit srch-btn" type="submit" value="Search" name="search">
         </div>
-        
-
+    
     </div>
+</form>
+    <hr style="width: 90%;">
     {% if  drinks%}
+    <div class="custom-col " >
         {% for drink in drinks%}
-        <a href="drinks/{{drink.idDrink}}">
-            <div class="card" style="width: 18rem;">
-                <img src={{drink.strDrinkThumb}} class="card-img-top" alt={{drink.strDrink}}>
+        <div style="padding: 5px ;">
+        <a href="drinks/{{drink.idDrink}}" class="card-link" style="text-decoration: none;">
+            <div class="card" style="width: fit-content; align-items: center;">
+                <img src={{drink.strDrinkThumb}} class="card-img-top " alt={{drink.strDrink}} style="height: 190px;width: 170px;">
                 <div class="card-body">
                     <h5 class="card-title">{{drink.strDrink}}</h5>
                 </div>
             </div>
         </a>
+        </div>
         {% endfor %}
+    </div>    
     {% endif %}
 
-    {% if test %}
-    <p>{{test}}</p>
-    {% endif%}
-</form>
+
+
 
 {% endblock %}

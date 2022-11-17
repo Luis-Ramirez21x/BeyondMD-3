@@ -4,11 +4,11 @@
 
 {% if  drink%}
 
-    <div class="card mb-3" style="max-width: 540px;" id={{drink.idDrink}}>
+    <div class="card mb-3 custom-card" style="max-width: 540px; margin: auto;" id={{drink.idDrink}}>
         <div class="row g-0">
             <div class="col-md-4">
                 <img src={{drink.strDrinkThumb}} class="img-fluid rounded-start" alt="...">
-                <div style="display: flex; flex-wrap:wrap;"}>
+                <div class="ingredients" style="display: flex; flex-wrap:wrap;"}>
                     <ul class="list-group list-group-flush" style="font-size: 12px;">
                         {% for portion in drink.ingredientPortions%}
                         <li class="list-group-item" style=" border:none">{{portion}}</li>
@@ -28,11 +28,15 @@
                 <p class="card-text"><small class="text-muted">{{drink.strGlass}}</small></p>
                 <p class="card-text">{{drink.strInstructions}}</p>
                 {% if saved %}
-                    <p>saved</p>
+                    <p style="color:orange">Saved 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                        </svg>
+                    </p>
                 {% else%}
                 <form method=POST>
                     {% csrf_token %}
-                    <input class="submit" type="submit" value="Save" name="save">
+                    <input class="submit srch-btn" type="submit" value="Save" name="save">
                 </form>
                 {% endif %}
                 </div>

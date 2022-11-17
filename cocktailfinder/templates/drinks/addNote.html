@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    <div class="card mb-3" style="max-width: 540px;" id={{drink.idDrink}}>
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src={{drink.imageUrl}} class="img-fluid rounded-start" alt={{drink.name}}>
+                <div style="display: flex; flex-wrap:wrap;"}>
+                    <ul class="list-group list-group-flush" style="font-size: 12px;">
+                        {% for portion in drink.getIngredientPortions %}
+                        <li class="list-group-item" style=" border:none">{{portion}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="list-group list-group-flush" style="font-size: 12px;">
+                        {% for item in drink.getIngredients %}
+                        <li class="list-group-item" style=" border:none">{{item}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title">{{drink.name}}</h5>
+                <p class="card-text">{{drink.instructions}}</p>
+                <h6>My Notes</h6>
+                {% if drink.note %}
+                    <p>{{drink.note}}</p>
+                {% else%}
+                    <p>No notes yet...</p>
+                {% endif %}
+                <form method=POST>
+                    {% csrf_token %}
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="userInput" name="userInput" placeholder="This drink..." >
+                        </div>
+                        <div class="form-check col-3">
+                            <input class="submit" type="submit" value="OK" name="Add Note">
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

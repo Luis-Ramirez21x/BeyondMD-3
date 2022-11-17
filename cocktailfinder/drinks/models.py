@@ -5,6 +5,7 @@ import json
 class Drink(models.Model):
     name = models.CharField(max_length=200)
     drinkId= models.CharField(max_length=200)
+    imageUrl = models.TextField(max_length=500)
     instructions = models.TextField(max_length=3000)
     ingredients = models.TextField(max_length=2000)
     ingredientPortions = models.TextField(max_length=2000)

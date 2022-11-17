@@ -20,9 +20,27 @@ def drink(request, drink_id):
 
 
     if request.method == "POST":
-        drinkToAdd = Drink(name=drink['strDrink'],drinkId=drink['idDrink'], instructions=drink['strInstructions'] , note='')
+        drinkToAdd = Drink(name=drink['strDrink'],drinkId=drink['idDrink'],imageUrl=drink['strDrinkThumb'], instructions=drink['strInstructions'] , note='')
         drinkToAdd.setIngredients(ingredients, ingredientPortions)
         drinkToAdd.save()
         return render(request, 'drinks/drink.html', {'drink':drink})
     else:
         return render(request, 'drinks/drink.html', {'drink':drink})
+        
+def savedDrinks(request):
+        savedDrinks_list = Drink.objects.all()
+
+        return render(request, 'drinks/savedDrinks.html', {'savedDrinks': savedDrinks_list})
+
+def addNote(request, drink_id):
+    drink = Drink.objects.get(drinkId=drink_id)
+    
+
+    if request.method == "POST":
+        userInput = request.POST['userInput']
+        drink.note = userInput
+        drink.save()
+
+        return render(request, 'drinks/addNote.html',{'drink': drink})
+    else:
+        return render(request, 'drinks/addNote.html',{'drink': drink})

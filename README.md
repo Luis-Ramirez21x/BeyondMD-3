@@ -2,6 +2,8 @@
 
 Get ready for a pre-game or a fun night out with cocktail finder! This app allows you to explore cocktails and view their ingredients!
 
+API Used: https://www.thecocktaildb.com/api.php
+
 ## Installation
 
 From root of project directory

@@ -7,9 +7,9 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 3s
-      timeout: 30s
-      retries: 3
+      interval: 10s
+      timeout: 5s
+      retries: 5
   front-end:
     build: ./app
     command: >
@@ -20,6 +20,6 @@ services:
       - .:/app/app
     ports:
       - "8000:8000"
+    restart: on-failure
     depends_on:
-      db:
-        condition: service_healthy
+      - db
